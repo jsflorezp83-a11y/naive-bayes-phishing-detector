@@ -16,7 +16,7 @@ st.set_page_config(
 
     page_title="Detector de Phishing",
 
-    page_icon="📧",
+    page_icon="",
 
     layout="centered"
 
@@ -34,7 +34,7 @@ vectorizer = joblib.load('models/vectorizer.pkl')
 # TÍTULO PRINCIPAL
 # ==========================================
 
-st.title("📧 Detector de Correos Phishing")
+st.title(" Detector de Correos Phishing")
 
 st.write("""
 
@@ -212,7 +212,7 @@ if st.button("Analizar Correo"):
 
             st.error(
 
-                "🚨 Este correo es PHISHING"
+                " Este correo es PHISHING"
 
             )
 
@@ -238,7 +238,7 @@ if st.button("Analizar Correo"):
 
             st.success(
 
-                "✅ Este correo es LEGÍTIMO"
+                " Este correo es LEGÍTIMO"
 
             )
 
