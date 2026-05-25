@@ -38,8 +38,9 @@ st.title("📧 Detector de Correos Phishing")
 
 st.write("""
 
-Esta aplicación utiliza Machine Learning y el algoritmo Naive Bayes
-para detectar si un correo electrónico es phishing o legítimo.
+Esta aplicación utiliza Machine Learning
+para detectar si un correo electrónico
+es phishing o legítimo.
 
 """)
 
@@ -70,16 +71,24 @@ if st.button("Analizar Correo"):
     if email_text.strip() == "":
 
         st.warning(
+
             "Por favor ingrese un correo electrónico."
+
         )
 
     else:
 
         # ==========================================
+        # GUARDAR TEXTO ORIGINAL
+        # ==========================================
+
+        original_text = email_text
+
+        # ==========================================
         # PREPROCESAMIENTO
         # ==========================================
 
-        # Convertir texto a minúsculas
+        # Convertir a minúsculas
         email_text = email_text.lower()
 
         # Eliminar enlaces
@@ -135,19 +144,62 @@ if st.button("Analizar Correo"):
         )
 
         # ==========================================
+        # PALABRAS SOSPECHOSAS
+        # ==========================================
+
+        suspicious_words = [
+
+            'verify',
+            'password',
+            'bank',
+            'account',
+            'suspended',
+            'urgent',
+            'click',
+            'login',
+            'security',
+            'confirm',
+            'limited',
+            'identity',
+            'alert',
+            'access',
+            'update'
+
+        ]
+
+        # Contar palabras sospechosas
+        suspicious_count = sum(
+
+            word in email_text
+
+            for word in suspicious_words
+
+        )
+
+        # ==========================================
+        # DETECCIÓN HEURÍSTICA
+        # ==========================================
+
+        if suspicious_count >= 3:
+
+            prediction[0] = 1
+
+        # ==========================================
         # MOSTRAR RESULTADO
         # ==========================================
 
         st.subheader("Resultado del análisis")
 
         # ==========================================
-        # SI ES PHISHING
+        # RESULTADO PHISHING
         # ==========================================
 
         if prediction[0] == 1:
 
             st.error(
-                "Este correo es PHISHING"
+
+                "🚨 Este correo es PHISHING"
+
             )
 
             st.write(
@@ -157,14 +209,23 @@ if st.button("Analizar Correo"):
 
             )
 
+            st.write(
+
+                f"Palabras sospechosas detectadas: "
+                f"{suspicious_count}"
+
+            )
+
         # ==========================================
-        # SI ES LEGÍTIMO
+        # RESULTADO LEGÍTIMO
         # ==========================================
 
         else:
 
             st.success(
-                "Este correo es LEGÍTIMO"
+
+                "✅ Este correo es LEGÍTIMO"
+
             )
 
             st.write(
@@ -183,6 +244,6 @@ st.markdown("---")
 st.caption(
 
     "Proyecto de Machine Learning - "
-    "Detección de Correos Phishing con Naive Bayes"
+    "Detección de Correos Phishing"
 
 )
