@@ -3,16 +3,23 @@
 # ==========================================
 
 import streamlit as st
+
 import joblib
+
+import re
 
 # ==========================================
 # CONFIGURACIÓN DE LA PÁGINA
 # ==========================================
 
 st.set_page_config(
+
     page_title="Detector de Phishing",
-    page_icon="",
+
+    page_icon="📧",
+
     layout="centered"
+
 )
 
 # ==========================================
@@ -27,34 +34,44 @@ vectorizer = joblib.load('models/vectorizer.pkl')
 # TÍTULO PRINCIPAL
 # ==========================================
 
-st.title(" Detector de Correos Phishing")
+st.title("📧 Detector de Correos Phishing")
 
 st.write("""
+
 Esta aplicación utiliza Machine Learning y el algoritmo Naive Bayes
 para detectar si un correo electrónico es phishing o legítimo.
+
 """)
 
 # ==========================================
 # INPUT DEL USUARIO
 # ==========================================
 
-st.subheader(" Ingrese el contenido del correo")
+st.subheader("Ingrese el contenido del correo")
 
 email_text = st.text_area(
+
     "Texto del correo electrónico",
+
     height=250
+
 )
 
 # ==========================================
-# BOTÓN DE PREDICCIÓN
+# BOTÓN DE ANÁLISIS
 # ==========================================
 
-if st.button(" Analizar Correo"):
+if st.button("Analizar Correo"):
 
-    # Verificar si el usuario escribió algo
+    # ==========================================
+    # VALIDAR INPUT
+    # ==========================================
+
     if email_text.strip() == "":
 
-        st.warning(" Por favor ingrese un correo electrónico.")
+        st.warning(
+            "Por favor ingrese un correo electrónico."
+        )
 
     else:
 
@@ -62,40 +79,99 @@ if st.button(" Analizar Correo"):
         # PREPROCESAMIENTO
         # ==========================================
 
-        email_vector = vectorizer.transform([email_text])
+        # Convertir texto a minúsculas
+        email_text = email_text.lower()
+
+        # Eliminar enlaces
+        email_text = re.sub(
+
+            r'http\S+',
+
+            '',
+
+            email_text
+
+        )
+
+        # Eliminar caracteres especiales
+        email_text = re.sub(
+
+            r'[^a-zA-Z\s]',
+
+            '',
+
+            email_text
+
+        )
 
         # ==========================================
-        # PREDICCIÓN
+        # TRANSFORMAR TEXTO
         # ==========================================
 
-        prediction = model.predict(email_vector)
+        email_vector = vectorizer.transform(
 
-        probability = model.predict_proba(email_vector)
+            [email_text]
+
+        )
 
         # ==========================================
-        # MOSTRAR RESULTADOS
+        # REALIZAR PREDICCIÓN
         # ==========================================
 
-        st.subheader(" Resultado del análisis")
+        prediction = model.predict(
 
-        # Si es phishing
+            email_vector
+
+        )
+
+        # ==========================================
+        # OBTENER PROBABILIDADES
+        # ==========================================
+
+        probability = model.predict_proba(
+
+            email_vector
+
+        )
+
+        # ==========================================
+        # MOSTRAR RESULTADO
+        # ==========================================
+
+        st.subheader("Resultado del análisis")
+
+        # ==========================================
+        # SI ES PHISHING
+        # ==========================================
+
         if prediction[0] == 1:
 
-            st.error(" Este correo es PHISHING")
-
-            st.write(
-                f"Probabilidad de phishing: "
-                f"{probability[0][1] * 100:.2f}%"
+            st.error(
+                "Este correo es PHISHING"
             )
 
-        # Si es legítimo
+            st.write(
+
+                f"Probabilidad de phishing: "
+                f"{probability[0][1] * 100:.2f}%"
+
+            )
+
+        # ==========================================
+        # SI ES LEGÍTIMO
+        # ==========================================
+
         else:
 
-            st.success(" Este correo es LEGÍTIMO")
+            st.success(
+                "Este correo es LEGÍTIMO"
+            )
 
             st.write(
+
                 f"Probabilidad de ser legítimo: "
                 f"{probability[0][0] * 100:.2f}%"
+
             )
 
 # ==========================================
@@ -105,6 +181,8 @@ if st.button(" Analizar Correo"):
 st.markdown("---")
 
 st.caption(
+
     "Proyecto de Machine Learning - "
     "Detección de Correos Phishing con Naive Bayes"
+
 )
