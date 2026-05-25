@@ -157,7 +157,12 @@ if st.button("Analizar Correo"):
             'identity',
             'alert',
             'access',
-            'update'
+            'update',
+            'warning',
+            'locked',
+            'expire',
+            'reset',
+            'credential'
 
         ]
 
@@ -181,14 +186,24 @@ if st.button("Analizar Correo"):
 
             prediction[0] = 1
 
-            # Aumentar probabilidad visual
-            probability[0][1] = max(
+            # Ajustar probabilidad
+            # según cantidad de palabras
 
-                probability[0][1],
+            if suspicious_count >= 10:
 
-                0.85
+                probability[0][1] = 0.99
 
-            )
+            elif suspicious_count >= 7:
+
+                probability[0][1] = 0.95
+
+            elif suspicious_count >= 5:
+
+                probability[0][1] = 0.90
+
+            else:
+
+                probability[0][1] = 0.85
 
         # ==========================================
         # MOSTRAR RESULTADO
