@@ -79,16 +79,10 @@ if st.button("Analizar Correo"):
     else:
 
         # ==========================================
-        # GUARDAR TEXTO ORIGINAL
-        # ==========================================
-
-        original_text = email_text
-
-        # ==========================================
         # PREPROCESAMIENTO
         # ==========================================
 
-        # Convertir a minúsculas
+        # Convertir texto a minúsculas
         email_text = email_text.lower()
 
         # Eliminar enlaces
@@ -167,7 +161,10 @@ if st.button("Analizar Correo"):
 
         ]
 
-        # Contar palabras sospechosas
+        # ==========================================
+        # CONTAR PALABRAS SOSPECHOSAS
+        # ==========================================
+
         suspicious_count = sum(
 
             word in email_text
@@ -183,6 +180,15 @@ if st.button("Analizar Correo"):
         if suspicious_count >= 3:
 
             prediction[0] = 1
+
+            # Aumentar probabilidad visual
+            probability[0][1] = max(
+
+                probability[0][1],
+
+                0.85
+
+            )
 
         # ==========================================
         # MOSTRAR RESULTADO
