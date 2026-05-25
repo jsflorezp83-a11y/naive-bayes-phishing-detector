@@ -186,24 +186,17 @@ if st.button("Analizar Correo"):
 
             prediction[0] = 1
 
-            # Ajustar probabilidad
-            # según cantidad de palabras
+            # Incrementar probabilidad gradualmente
+            probability[0][1] += suspicious_count * 0.03
 
-            if suspicious_count >= 10:
+            # Limitar máximo a 99%
+            probability[0][1] = min(
 
-                probability[0][1] = 0.99
+                probability[0][1],
 
-            elif suspicious_count >= 7:
+                0.99
 
-                probability[0][1] = 0.95
-
-            elif suspicious_count >= 5:
-
-                probability[0][1] = 0.90
-
-            else:
-
-                probability[0][1] = 0.85
+            )
 
         # ==========================================
         # MOSTRAR RESULTADO
