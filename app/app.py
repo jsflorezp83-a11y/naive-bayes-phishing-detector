@@ -1,11 +1,5 @@
-# ==========================================
-# IMPORTAR LIBRERÍAS
-# ==========================================
-
 import streamlit as st
-
 import joblib
-
 import re
 
 # ==========================================
@@ -13,251 +7,191 @@ import re
 # ==========================================
 
 st.set_page_config(
-
     page_title="Detector de Phishing",
-
     page_icon="",
-
     layout="centered"
-
 )
 
 # ==========================================
-# CARGAR MODELO Y VECTORIZADOR
+# ESTILO NEGRO
 # ==========================================
 
-model = joblib.load('models/modelo.pkl')
+st.markdown("""
+<style>
 
-vectorizer = joblib.load('models/vectorizer.pkl')
+.stApp {
+    background-color: #000000;
+    color: white;
+}
 
-# ==========================================
-# TÍTULO PRINCIPAL
-# ==========================================
+h1, h2, h3, p, label {
+    color: white !important;
+}
 
-st.title(" Detector de Correos Phishing")
+.stButton > button {
+    background-color: #00c853;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    width: 250px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-st.write("""
+.stTextArea textarea {
+    background-color: #1e1e1e;
+    color: white;
+}
 
-Esta aplicación utiliza Machine Learning
-para detectar si un correo electrónico
-es phishing o legítimo.
-
-""")
-
-# ==========================================
-# INPUT DEL USUARIO
-# ==========================================
-
-st.subheader("Ingrese el contenido del correo")
-
-email_text = st.text_area(
-
-    "Texto del correo electrónico",
-
-    height=250
-
-)
+</style>
+""", unsafe_allow_html=True)
 
 # ==========================================
-# BOTÓN DE ANÁLISIS
+# CONTROL DE PÁGINAS
 # ==========================================
 
-if st.button("Analizar Correo"):
+if "pagina" not in st.session_state:
+    st.session_state.pagina = "inicio"
 
-    # ==========================================
-    # VALIDAR INPUT
-    # ==========================================
+# ==========================================
+# PÁGINA DE INICIO
+# ==========================================
 
-    if email_text.strip() == "":
+if st.session_state.pagina == "inicio":
 
-        st.warning(
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
-            "Por favor ingrese un correo electrónico."
+    st.title("Detector Inteligente de Phishing")
 
-        )
+    st.markdown("""
+    ### Sistema de detección de correos fraudulentos
 
-    else:
+    Esta herramienta utiliza Machine Learning para
+    identificar intentos de phishing y proteger
+    a los usuarios contra posibles amenazas.
+    """)
 
-        # ==========================================
-        # PREPROCESAMIENTO
-        # ==========================================
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/3064/3064197.png",
+        width=200
+    )
 
-        # Convertir texto a minúsculas
-        email_text = email_text.lower()
+    if st.button("Iniciar Análisis"):
+        st.session_state.pagina = "detector"
+        st.rerun()
 
-        # Eliminar enlaces
-        email_text = re.sub(
+# ==========================================
+# PÁGINA DEL DETECTOR
+# ==========================================
 
-            r'http\S+',
+elif st.session_state.pagina == "detector":
 
-            '',
+    # Cargar modelo
+    model = joblib.load('models/modelo.pkl')
+    vectorizer = joblib.load('models/vectorizer.pkl')
 
-            email_text
+    st.title("Detector de Correos Phishing")
 
-        )
+    st.write("""
+    Ingrese el contenido del correo electrónico
+    para analizar si es legítimo o phishing.
+    """)
 
-        # Eliminar caracteres especiales
-        email_text = re.sub(
+    email_text = st.text_area(
+        "Texto del correo electrónico",
+        height=250
+    )
 
-            r'[^a-zA-Z\s]',
+    if st.button("Analizar Correo"):
 
-            '',
-
-            email_text
-
-        )
-
-        # ==========================================
-        # TRANSFORMAR TEXTO
-        # ==========================================
-
-        email_vector = vectorizer.transform(
-
-            [email_text]
-
-        )
-
-        # ==========================================
-        # REALIZAR PREDICCIÓN
-        # ==========================================
-
-        prediction = model.predict(
-
-            email_vector
-
-        )
-
-        # ==========================================
-        # OBTENER PROBABILIDADES
-        # ==========================================
-
-        probability = model.predict_proba(
-
-            email_vector
-
-        )
-
-        # ==========================================
-        # PALABRAS SOSPECHOSAS
-        # ==========================================
-
-        suspicious_words = [
-
-            'verify',
-            'password',
-            'bank',
-            'account',
-            'suspended',
-            'urgent',
-            'click',
-            'login',
-            'security',
-            'confirm',
-            'limited',
-            'identity',
-            'alert',
-            'access',
-            'update',
-            'warning',
-            'locked',
-            'expire',
-            'reset',
-            'credential'
-
-        ]
-
-        # ==========================================
-        # CONTAR PALABRAS SOSPECHOSAS
-        # ==========================================
-
-        suspicious_count = sum(
-
-            word in email_text
-
-            for word in suspicious_words
-
-        )
-
-        # ==========================================
-        # DETECCIÓN HEURÍSTICA
-        # ==========================================
-
-        if suspicious_count >= 3:
-
-            prediction[0] = 1
-
-            # Incrementar probabilidad gradualmente
-            probability[0][1] += suspicious_count * 0.03
-
-            # Limitar máximo a 99%
-            probability[0][1] = min(
-
-                probability[0][1],
-
-                0.99
-
+        if email_text.strip() == "":
+            st.warning(
+                "Por favor ingrese un correo electrónico."
             )
-
-        # ==========================================
-        # MOSTRAR RESULTADO
-        # ==========================================
-
-        st.subheader("Resultado del análisis")
-
-        # ==========================================
-        # RESULTADO PHISHING
-        # ==========================================
-
-        if prediction[0] == 1:
-
-            st.error(
-
-                " Este correo es PHISHING"
-
-            )
-
-            st.write(
-
-                f"Probabilidad de phishing: "
-                f"{probability[0][1] * 100:.2f}%"
-
-            )
-
-            st.write(
-
-                f"Palabras sospechosas detectadas: "
-                f"{suspicious_count}"
-
-            )
-
-        # ==========================================
-        # RESULTADO LEGÍTIMO
-        # ==========================================
 
         else:
 
-            st.success(
+            email_text = email_text.lower()
 
-                " Este correo es LEGÍTIMO"
-
+            email_text = re.sub(
+                r'http\S+',
+                '',
+                email_text
             )
 
-            st.write(
-
-                f"Probabilidad de ser legítimo: "
-                f"{probability[0][0] * 100:.2f}%"
-
+            email_text = re.sub(
+                r'[^a-zA-Z\s]',
+                '',
+                email_text
             )
 
-# ==========================================
-# PIE DE PÁGINA
-# ==========================================
+            email_vector = vectorizer.transform(
+                [email_text]
+            )
+
+            prediction = model.predict(
+                email_vector
+            )
+
+            probability = model.predict_proba(
+                email_vector
+            )
+
+            suspicious_words = [
+                'verify', 'password', 'bank',
+                'account', 'suspended', 'urgent',
+                'click', 'login', 'security',
+                'confirm', 'limited', 'identity',
+                'alert', 'access', 'update',
+                'warning', 'locked', 'expire',
+                'reset', 'credential'
+            ]
+
+            suspicious_count = sum(
+                word in email_text
+                for word in suspicious_words
+            )
+
+            if suspicious_count >= 3:
+                prediction[0] = 1
+                probability[0][1] += suspicious_count * 0.03
+                probability[0][1] = min(
+                    probability[0][1],
+                    0.99
+                )
+
+            st.subheader("Resultado")
+
+            if prediction[0] == 1:
+
+                st.error(
+                    "Este correo es PHISHING"
+                )
+
+                st.write(
+                    f"Probabilidad de phishing: "
+                    f"{probability[0][1] * 100:.2f}%"
+                )
+
+                st.write(
+                    f"Palabras sospechosas detectadas: "
+                    f"{suspicious_count}"
+                )
+
+            else:
+
+                st.success(
+                    "Este correo es LEGÍTIMO"
+                )
+
+                st.write(
+                    f"Probabilidad de ser legítimo: "
+                    f"{probability[0][0] * 100:.2f}%"
+                )
+
+    if st.button("Volver al Inicio"):
+        st.session_state.pagina = "inicio"
+        st.rerun()
 
 st.markdown("---")
-
-st.caption(
-
-    "Proyecto de Machine Learning - "
-    "Detección de Correos Phishing"
-
-)
+st.caption("Proyecto de Machine Learning - Detección de Correos Phishing")
