@@ -371,4 +371,3 @@ st.markdown("---")
 st.caption(
     "Proyecto de Machine Learning - Detección de Correos Phishing"
 )
-```
