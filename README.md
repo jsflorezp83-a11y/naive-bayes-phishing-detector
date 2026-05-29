@@ -14,7 +14,7 @@ El proyecto fue desarrollado como parte de la actividad de Inteligencia Artifici
 
 ### URL de la aplicación desplegada
 
-(URL DE LA APP)
+https://naive-bayes-phishing-detector-evqszgq7quuxhjfxz7vg3d.streamlit.app/
 
 ### URL del repositorio
 
@@ -196,7 +196,7 @@ http://localhost:8501
 ## Autores
 
 - Camilo González
-- Nombre Integrante 2
-- Nombre Integrante 3
+- Jhontan Florez
+- Miguel Rojas
 
 ---
