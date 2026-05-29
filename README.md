@@ -1,130 +1,202 @@
-# Naive bayes phishing detector
+# Naive Bayes Phishing Detector
 
-## Descripción  
-Este proyecto consiste en una aplicación web basada en Machine Learning diseñada para detectar sitios web phishing y URLs sospechosas utilizando el algoritmo Naive Bayes.
-La aplicación analiza diferentes características de una URL y predice si el sitio es legítimo o phishing. El objetivo principal es ayudar a los usuarios a identificar páginas potencialmente peligrosas y aumentar la seguridad informática.
+## Descripción
+
+Este proyecto consiste en una aplicación web basada en Machine Learning diseñada para detectar correos electrónicos phishing utilizando el algoritmo Naive Bayes.
+
+La aplicación analiza el contenido de un correo electrónico y predice si se trata de un mensaje legítimo o de phishing. El objetivo principal es ayudar a los usuarios a identificar posibles amenazas y aumentar la seguridad informática.
+
 El proyecto fue desarrollado como parte de la actividad de Inteligencia Artificial I enfocada en el despliegue de modelos de Machine Learning en entornos reales.
 
-## Demostración
-URL de la aplicacion desplegada:()
-URL del repositorio: [https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector.git]
+---
 
-## Algoritmo utilizado 
-Naive bayes
+## Demostración
+
+### URL de la aplicación desplegada
+
+(URL DE LA APP)
+
+### URL del repositorio
+
+https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector.git
+
+---
+
+## Algoritmo Utilizado
+
+### Naive Bayes
 
 Naive Bayes es un algoritmo probabilístico de Machine Learning utilizado comúnmente en tareas de clasificación como:
 
--detección de spam
--detección de phishing
--clasificación de texto
+- Detección de spam.
+- Detección de phishing.
+- Clasificación de texto.
 
-¿Por qué se eligió Naive Bayes?
+### ¿Por qué se eligió Naive Bayes?
 
 El algoritmo fue seleccionado porque:
 
--Tiene buen rendimiento en problemas de clasificación
--Es rápido y eficiente
--Funciona bien con datasets relacionados con phishing
--Maneja grandes cantidades de datos
--Es ampliamente usado en aplicaciones de ciberseguridad
+- Tiene buen rendimiento en problemas de clasificación.
+- Es rápido y eficiente.
+- Funciona bien con datasets relacionados con phishing.
+- Maneja grandes cantidades de datos.
+- Es ampliamente usado en aplicaciones de ciberseguridad.
 
-Métricas del Modelo
-Accuracy: 92%
-Precision: 90%
-Recall: 91%
-F1-Score: 90%
+### Métricas del Modelo
 
-## Dataset utilizado 
+- Accuracy: 92%
+- Precision: 90%
+- Recall: 91%
+- F1-Score: 90%
 
-Fuente de los datos:
+---
+
+## Dataset Utilizado
+
+### Fuente de los Datos
 
 Phishing Email Dataset - Kaggle
+
 https://www.kaggle.com/datasets/naserabdullahalam/phishing-email-dataset
 
-Tamaño del dataset:
-El dataset tiene un tamaño de 82.500 datos introducidos que en este caso son de correos electronicos de una empresa real.
+### Tamaño del Dataset
 
-Descripción
+El dataset contiene aproximadamente 82.500 registros correspondientes a correos electrónicos utilizados para entrenar y evaluar el modelo de clasificación.
+
+### Descripción
 
 El conjunto de datos contiene correos electrónicos clasificados en dos categorías:
 
--Phishing
--Safe Email (Correo legítimo)
+- Phishing.
+- Safe Email (Correo legítimo).
 
 Este dataset fue utilizado para entrenar y evaluar el modelo de clasificación.
 
-Características utilizadas
+### Características Utilizadas
 
--Contenido textual del correo.
--Palabras sospechosas.
--Frecuencia de términos.
--Patrones lingüísticos.
--Indicadores comunes de ataques phishing.
--Objetivo
+- Contenido textual del correo.
+- Palabras sospechosas.
+- Frecuencia de términos.
+- Patrones lingüísticos.
+- Indicadores comunes de ataques phishing.
+
+### Objetivo
 
 Entrenar un modelo capaz de identificar automáticamente correos electrónicos maliciosos y diferenciarlos de correos legítimos.
 
-Tecnologías Utilizadas:
--Python
--Streamlit
--Scikit-Learn
--Pandas
--NumPy
--Joblib
--Git
--GitHub
+---
 
-## Instalación local 
+## Tecnologías Utilizadas
 
-## Requisitos
+- Python
+- Streamlit
+- Scikit-Learn
+- Pandas
+- NumPy
+- Joblib
+- Git
+- GitHub
+
+---
+
+## Instalación Local
+
+### Requisitos
+
 Antes de ejecutar el proyecto, asegúrese de tener instalado:
 
--Python 3.11 o superior
--Pip (administrador de paquetes de Python)
--Git
+- Python 3.11 o superior.
+- Pip (administrador de paquetes de Python).
+- Git.
+- Conexión a Internet para descargar las dependencias.
 
-Una conexión a Internet para descargar las dependencias
-Para verificar que Python está instalado correctamente, ejecute:
+### Verificar Python
+
+```bash
 python --version
+```
+
 Debería mostrar una versión igual o superior a Python 3.11.
 
-Para verificar Git:
+### Verificar Git
+
+```bash
 git --version
+```
 
-### Pasos a seguir 
+---
 
-1. Clonar el Repositorio:
+## Pasos a Seguir
+
+### 1. Clonar el Repositorio
+
 Abra una terminal o consola de comandos y ejecute:
+
+```bash
 git clone https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector.git
+```
+
 Este comando descargará una copia completa del proyecto desde GitHub a su equipo local.
 
-2. Acceder al Directorio del Proyecto:
-Una vez finalizada la descarga, ingrese a la carpeta del proyecto:
-cd naive-bayes-phishing-detector
+### 2. Acceder al Directorio del Proyecto
 
-3. Instalar las Dependencias
+Una vez finalizada la descarga, ingrese a la carpeta del proyecto:
+
+```bash
+cd naive-bayes-phishing-detector
+```
+
+### 3. Instalar las Dependencias
 
 Instale todas las librerías necesarias para ejecutar la aplicación:
--pip install -r requirements.txt
 
-Este comando instalará automáticamente todas las dependencias definidas en el archivo requirements.txt, incluyendo:
+```bash
+pip install -r requirements.txt
+```
 
--Streamlit
--Scikit-Learn
--Pandas
--NumPy
--Joblib
--Matplotlib
+Este comando instalará automáticamente todas las dependencias definidas en el archivo `requirements.txt`, incluyendo:
 
-4. Ejecutar la Aplicación
+- Streamlit
+- Scikit-Learn
+- Pandas
+- NumPy
+- Joblib
+- Matplotlib
+
+### 4. Ejecutar la Aplicación
 
 Una vez completada la instalación, inicie la aplicación mediante:
-streamlit run app/app.py
 
-5. Acceder a la Aplicación
+```bash
+streamlit run app/app.py
+```
+
+### 5. Acceder a la Aplicación
 
 Después de ejecutar el comando anterior, Streamlit abrirá automáticamente la aplicación en el navegador.
-Si no se abre automáticamente, copie y pegue en su navegador la URL mostrada en la terminal, normalmente:
 
+Si no se abre automáticamente, copie y pegue en su navegador la siguiente dirección:
+
+```text
 http://localhost:8501
+```
 
+---
+
+## Funcionalidades
+
+- Clasificación automática de correos electrónicos.
+- Detección de intentos de phishing.
+- Predicciones en tiempo real.
+- Interfaz amigable para el usuario.
+- Implementación de Machine Learning aplicada a la ciberseguridad.
+
+---
+
+## Autores
+
+- Camilo González
+- Nombre Integrante 2
+- Nombre Integrante 3
+
+---
