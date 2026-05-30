@@ -435,7 +435,7 @@ def page_inicio():
 
     col_btn = st.columns([1, 2, 1])
     with col_btn[1]:
-        if st.button("🛡️  Iniciar Análisis", use_container_width=True):
+        if st.button("  Iniciar Análisis", use_container_width=True):
             st.session_state.pagina = "detector"
             st.rerun()
 
@@ -461,7 +461,7 @@ def page_detector():
     st.markdown('<div class="pg-logo"><span class="pg-logo-text" style="font-size:2rem;">PhishGuard</span></div>', unsafe_allow_html=True)
     st.markdown('<p class="pg-subtitle" style="margin-bottom:1.5rem;">Analizador de Correos Electrónicos</p>', unsafe_allow_html=True)
 
-    tab_analizar, tab_info, tab_historial = st.tabs(["🔍  Analizar", "📊  Indicadores", "📋  Historial"])
+    tab_analizar, tab_info, tab_historial = st.tabs(["  Analizar", "  Indicadores", "  Historial"])
 
     with tab_analizar:   _tab_analizar()
     with tab_info:       _tab_indicadores()
@@ -500,7 +500,7 @@ def _tab_analizar():
 
     col_btn = st.columns([1, 2, 1])
     with col_btn[1]:
-        analizar = st.button("🔍  Analizar Correo", use_container_width=True)
+        analizar = st.button("  Analizar Correo", use_container_width=True)
 
     if analizar:
         if not email_text.strip():
@@ -654,11 +654,11 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#7f1d1d;">
             <p style="color:#fca5a5; font-size:0.9rem; line-height:1.8;">
-            🚫 <strong style="color:#f87171;">No hagas clic</strong> en ningún enlace ni descargues adjuntos.<br>
-            🗑️ <strong style="color:#f87171;">Elimina</strong> este correo de inmediato.<br>
-            🔐 <strong style="color:#f87171;">No compartas</strong> contraseñas ni datos bancarios.<br>
-            📧 <strong style="color:#f87171;">Reporta</strong> el correo como phishing a tu proveedor.<br>
-            🔒 Si ya interactuaste, <strong style="color:#f87171;">cambia tus contraseñas</strong> de inmediato.
+             <strong style="color:#f87171;">No hagas clic</strong> en ningún enlace ni descargues adjuntos.<br>
+             <strong style="color:#f87171;">Elimina</strong> este correo de inmediato.<br>
+             <strong style="color:#f87171;">No compartas</strong> contraseñas ni datos bancarios.<br>
+             <strong style="color:#f87171;">Reporta</strong> el correo como phishing a tu proveedor.<br>
+             Si ya interactuaste, <strong style="color:#f87171;">cambia tus contraseñas</strong> de inmediato.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -666,9 +666,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#92400e;">
             <p style="color:#fcd34d; font-size:0.9rem; line-height:1.8;">
-            ⚠️ Este correo presenta indicadores sospechosos. Procede con cautela.<br>
-            🔍 Verifica la dirección del remitente y el dominio.<br>
-            🌐 No hagas clic en enlaces sin verificar su destino.
+             Este correo presenta indicadores sospechosos. Procede con cautela.<br>
+             Verifica la dirección del remitente y el dominio.<br>
+             No hagas clic en enlaces sin verificar su destino.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -676,9 +676,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#14532d;">
             <p style="color:#86efac; font-size:0.9rem; line-height:1.8;">
-            ✅ Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
-            🔍 Verifica siempre el remitente antes de responder.<br>
-            🔗 No hagas clic en enlaces inesperados aunque el correo parezca confiable.
+             Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
+             Verifica siempre el remitente antes de responder.<br>
+             No hagas clic en enlaces inesperados aunque el correo parezca confiable.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -691,11 +691,11 @@ def _tab_indicadores():
     st.markdown('<div class="pg-card-title">¿Qué analiza PhishGuard?</div>', unsafe_allow_html=True)
 
     indicadores = [
-        ("🤖", "Modelo de ML",        f"Clasificador entrenado con miles de correos reales usando TF-IDF + Naive Bayes / Random Forest."),
-        ("🔤", "Palabras Clave",       f"Se verifican {len(SUSPICIOUS_WORDS)} palabras frecuentes en correos de phishing."),
-        ("🌐", "Detección de URLs",    "Más de 3 URLs en un correo incrementa la puntuación de riesgo automáticamente."),
-        ("📢", "Exceso de Mayúsculas", "Un ratio mayor al 35% de mayúsculas es señal de alerta heurística."),
-        ("📊", "Score Combinado",      "El resultado combina la probabilidad del modelo con penalizaciones heurísticas."),
+        ("Modelo de ML",        f"Clasificador entrenado con miles de correos reales usando TF-IDF + Naive Bayes / Random Forest."),
+        ("Palabras Clave",       f"Se verifican {len(SUSPICIOUS_WORDS)} palabras frecuentes en correos de phishing."),
+        ("Detección de URLs",    "Más de 3 URLs en un correo incrementa la puntuación de riesgo automáticamente."),
+        ("Exceso de Mayúsculas", "Un ratio mayor al 35% de mayúsculas es señal de alerta heurística."),
+        ("Score Combinado",      "El resultado combina la probabilidad del modelo con penalizaciones heurísticas."),
     ]
 
     for icon, titulo, desc in indicadores:
@@ -771,7 +771,7 @@ def _tab_historial():
     st.markdown("<br>", unsafe_allow_html=True)
     col_clear = st.columns([2, 1, 2])
     with col_clear[1]:
-        if st.button("🗑  Limpiar Historial", use_container_width=True):
+        if st.button("  Limpiar Historial", use_container_width=True):
             st.session_state.historial         = []
             st.session_state.total_analizados  = 0
             st.session_state.total_phishing    = 0
