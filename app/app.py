@@ -612,9 +612,9 @@ def _tab_analizar():
         # ---- Gráficos ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
-
+ 
         col_g1, col_g2 = st.columns(2)
-
+ 
         with col_g1:
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
@@ -644,13 +644,13 @@ def _tab_analizar():
                 margin=dict(t=40, b=10, l=20, r=20)
             )
             st.plotly_chart(fig_gauge, use_container_width=True)
-
+ 
         with col_g2:
             fig_pie = px.pie(
                 values=[prob_phishing * 100, prob_legit * 100],
                 names=["Phishing", "Legítimo"],
                 hole=0.55,
-                color_discrete_sequence=["#ef4444", "#22c55e"]
+                color_discrete_map={"Phishing": "#ef4444", "Legítimo": "#22c55e"}
             )
             fig_pie.update_traces(
                 textfont=dict(family="Space Mono", color="#e2e8f0"),
@@ -665,7 +665,6 @@ def _tab_analizar():
                 margin=dict(t=20, b=10, l=10, r=10)
             )
             st.plotly_chart(fig_pie, use_container_width=True)
-
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
