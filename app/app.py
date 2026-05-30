@@ -593,23 +593,43 @@ def _tab_analizar():
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
 
-        col_g1, col_g2 = st.columns(2)
+              col_g1, col_g2 = st.columns(2)
 
-              with col_g1:
+        with col_g1:
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=riesgo_pct,
                 number={"suffix": "%", "font": {"size": 28, "color": "#e2e8f0", "family": "Space Mono"}},
                 gauge={
-                    "axis": {"range": [0, 100]},
-                    "bar": {"color": risk_color},
+                    "axis": {"range": [0, 100], "tickcolor": "#1a2a3a", "tickwidth": 1},
+                    "bar": {"color": risk_color, "thickness": 0.25},
+                    "bgcolor": "#0a1018",
+                    "borderwidth": 0,
+                    "steps": [
+                        {"range": [0, 25], "color": "#061a0e"},
+                        {"range": [25, 50], "color": "#0e1a08"},
+                        {"range": [50, 70], "color": "#1a1400"},
+                        {"range": [70, 85], "color": "#1a0a00"},
+                        {"range": [85, 100], "color": "#1a0000"},
+                    ],
+                    "threshold": {
+                        "line": {"color": risk_color, "width": 4},
+                        "thickness": 0.75,
+                        "value": riesgo_pct
+                    }
+                },
+                title={
+                    "text": "Nivel de Riesgo",
+                    "font": {"color": "#64748b", "size": 12, "family": "Space Mono"}
                 }
             ))
 
             fig_gauge.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                height=220
+                font_color="#e2e8f0",
+                height=220,
+                margin=dict(t=40, b=10, l=20, r=20)
             )
 
             st.plotly_chart(fig_gauge, use_container_width=True)
@@ -670,8 +690,9 @@ def _tab_analizar():
 
             st.plotly_chart(fig_pie, use_container_width=True)
 
-    st.plotly_chart(fig_pie, use_container_width=True)
-
+        # ---- Recomendaciones ----
+        st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+        st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
