@@ -136,22 +136,42 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
 
 .stButton > button {
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
-    color: #ffffff !important;
+    color: #000000 !important;
     border: none !important;
     border-radius: 10px !important;
     height: 52px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 0.9rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
     transition: all 0.3s ease !important;
-    box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 !important;
 }
 .stButton > button:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 30px rgba(0,120,255,0.5) !important;
+    color: #000000 !important;
+    outline: none !important;
+    border: none !important;
 }
-
+.stButton > button:focus, .stButton > button:focus-visible, .stButton > button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+[data-testid="stBaseButton-secondary"], [data-testid="stBaseButton-primary"] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
+    color: #000000 !important;
+}
 .stTextArea textarea {
     background: #060d14 !important;
     color: #cbd5e1 !important;
@@ -590,7 +610,7 @@ def _tab_analizar():
             st.markdown('<p style="color:#475569; font-size:0.85rem;">No se encontraron palabras sospechosas.</p>', unsafe_allow_html=True)
 
         # ---- Gráficos ----
-        st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+       st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
  
         col_g1, col_g2 = st.columns(2)
@@ -626,6 +646,7 @@ def _tab_analizar():
             st.plotly_chart(fig_gauge, use_container_width=True)
  
         with col_g2:
+<<<<<<< HEAD
            fig_pie = px.pie(
              values=[prob_phishing * 100, prob_legit * 100],
              names=["Phishing", "Legítimo"],
@@ -678,6 +699,28 @@ def _tab_analizar():
 
     st.plotly_chart(fig_pie, use_container_width=True)
 
+=======
+            fig_pie = go.Figure(go.Pie(
+                labels=["Phishing", "Legítimo"],
+                values=[prob_phishing * 100, prob_legit * 100],
+                hole=0.55,
+                marker=dict(
+                    colors=["#ef4444", "#22c55e"],
+                    line=dict(color="#050a0e", width=2)
+                ),
+                textfont=dict(family="Space Mono", color="#e2e8f0"),
+                sort=False
+            ))
+            fig_pie.update_layout(
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
+                font=dict(color="#94a3b8", family="Inter"),
+                legend=dict(font=dict(color="#94a3b8", size=11), bgcolor="rgba(0,0,0,0)"),
+                height=220,
+                margin=dict(t=20, b=10, l=10, r=10)
+            )
+            st.plotly_chart(fig_pie, use_container_width=True)
+>>>>>>> fa5876619ea9e883efcda532db905964605db40c
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
