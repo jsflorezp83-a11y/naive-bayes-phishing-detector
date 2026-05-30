@@ -698,11 +698,11 @@ def _tab_indicadores():
         ("Score Combinado",      "El resultado combina la probabilidad del modelo con penalizaciones heurísticas."),
     ]
 
-    for icon, titulo, desc in indicadores:
+    for titulo, desc in indicadores:
         st.markdown(f"""
         <div class="pg-card" style="padding:1.2rem 1.5rem; margin-bottom:10px;">
             <div style="display:flex; gap:1rem; align-items:flex-start;">
-                <div style="font-size:1.4rem; flex-shrink:0;">{icon}</div>
+                <div style="font-size:1.4rem; flex-shrink:0;"
                 <div>
                     <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#00d4ff; margin-bottom:4px; letter-spacing:0.08em;">{titulo.upper()}</div>
                     <div style="font-size:0.85rem; color:#94a3b8; line-height:1.7;">{desc}</div>
