@@ -12,7 +12,7 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="PhishGuard | Detector de Phishing",
-    page_icon="🛡️",
+    page_icon="",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -136,42 +136,22 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
 
 .stButton > button {
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
-    color: #000000 !important;
+    color: #ffffff !important;
     border: none !important;
     border-radius: 10px !important;
     height: 52px !important;
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 0.9rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
     transition: all 0.3s ease !important;
-    box-shadow: none !important;
-    outline: none !important;
-    padding: 0 !important;
+    box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
 }
 .stButton > button:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 30px rgba(0,120,255,0.5) !important;
-    color: #000000 !important;
-    outline: none !important;
-    border: none !important;
 }
-.stButton > button:focus, .stButton > button:focus-visible, .stButton > button:active {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-[data-testid="stBaseButton-secondary"], [data-testid="stBaseButton-primary"] {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
-    color: #000000 !important;
-}
+
 .stTextArea textarea {
     background: #060d14 !important;
     color: #cbd5e1 !important;
@@ -231,7 +211,7 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     margin: 1rem 0;
 }
 .pg-result-phishing::before {
-    content: '⚠ PHISHING DETECTADO';
+    content: 'PHISHING DETECTADO';
     display: block;
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
@@ -247,7 +227,7 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     margin: 1rem 0;
 }
 .pg-result-legit::before {
-    content: '✓ CORREO LEGÍTIMO';
+    content: ' CORREO LEGÍTIMO';
     display: block;
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
@@ -324,6 +304,38 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
 
 details { background: #0a1018 !important; border: 1px solid #1a2a3a !important; border-radius: 10px !important; }
 summary { font-family: 'Space Mono', monospace !important; font-size: 0.75rem !important; color: #94a3b8 !important; letter-spacing: 0.08em !important; }
+
+.pg-link-card {
+    display: flex; align-items: center; gap: 1.2rem;
+    background: linear-gradient(135deg, #0d1520 0%, #0a1018 100%);
+    border: 1px solid #1a2a3a; border-radius: 14px;
+    padding: 1.2rem 1.5rem; margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+}
+.pg-link-card::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent); opacity: 0.4;
+}
+.pg-link-card:hover { border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.1); }
+.pg-link-icon {
+    font-size: 1.6rem; flex-shrink: 0; width: 48px; height: 48px;
+    background: #0a1825; border: 1px solid #1a3040; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+}
+.pg-link-title { font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; color: #00d4ff; letter-spacing: 0.05em; margin-bottom: 3px; }
+.pg-link-desc  { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+.pg-link-url   { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: #334155; margin-top: 4px; }
+.pg-nb-step    { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid #0f1e2a; }
+.pg-nb-num     { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; color: #050a0e; background: #00d4ff; border-radius: 6px; padding: 3px 8px; flex-shrink: 0; margin-top: 2px; }
+.pg-nb-title   { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #e2e8f0; margin-bottom: 4px; letter-spacing: 0.04em; }
+.pg-nb-desc    { font-size: 0.82rem; color: #64748b; line-height: 1.7; }
+.pg-formula    { background: #060d14; border: 1px solid #1a2a3a; border-left: 3px solid #00d4ff; border-radius: 8px; padding: 12px 16px; font-family: 'Space Mono', monospace; font-size: 0.78rem; color: #7dd3fc; margin: 0.75rem 0; line-height: 1.8; overflow-x: auto; }
+.pg-stat-row   { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+.pg-stat-box   { flex: 1; min-width: 110px; background: #0a1018; border: 1px solid #1a2a3a; border-radius: 10px; padding: 1rem; text-align: center; }
+.pg-stat-val   { font-family: 'Space Mono', monospace; font-size: 1.4rem; font-weight: 700; color: #00d4ff; }
+.pg-stat-lbl   { font-size: 0.72rem; color: #475569; margin-top: 4px; }
 
 p, li, span, div { color: #94a3b8; }
 label { color: #94a3b8 !important; }
@@ -455,7 +467,7 @@ def page_inicio():
 
     col_btn = st.columns([1, 2, 1])
     with col_btn[1]:
-        if st.button("  Iniciar Análisis", use_container_width=True):
+        if st.button("Iniciar Análisis", use_container_width=True):
             st.session_state.pagina = "detector"
             st.rerun()
 
@@ -481,16 +493,17 @@ def page_detector():
     st.markdown('<div class="pg-logo"><span class="pg-logo-text" style="font-size:2rem;">PhishGuard</span></div>', unsafe_allow_html=True)
     st.markdown('<p class="pg-subtitle" style="margin-bottom:1.5rem;">Analizador de Correos Electrónicos</p>', unsafe_allow_html=True)
 
-    tab_analizar, tab_info, tab_historial = st.tabs(["  Analizar", "  Indicadores", "  Historial"])
+    tab_analizar, tab_info, tab_historial, tab_sobre = st.tabs(["Analizar", "Indicadores", "Historial", "Sobre el Proyecto"])
 
     with tab_analizar:   _tab_analizar()
     with tab_info:       _tab_indicadores()
     with tab_historial:  _tab_historial()
+    with tab_sobre:      _tab_sobre()
 
     st.markdown("<br>", unsafe_allow_html=True)
     col_back = st.columns([1, 2, 1])
     with col_back[1]:
-        if st.button("← Volver al Inicio", use_container_width=True):
+        if st.button("Volver al Inicio", use_container_width=True):
             st.session_state.pagina = "inicio"
             st.rerun()
 
@@ -499,7 +512,7 @@ def _tab_analizar():
     model, vectorizer = load_model()
 
     if model is None:
-        st.error("⚠ No se encontró el modelo en `models/modelo.pkl`. Verifica que los archivos existan.")
+        st.error("Error: No se encontró el modelo en `models/modelo.pkl`. Verifica que los archivos existan.")
         return
 
     email_text = st.text_area(
@@ -520,7 +533,7 @@ def _tab_analizar():
 
     col_btn = st.columns([1, 2, 1])
     with col_btn[1]:
-        analizar = st.button("  Analizar Correo", use_container_width=True)
+        analizar = st.button("Analizar Correo", use_container_width=True)
 
     if analizar:
         if not email_text.strip():
@@ -610,11 +623,11 @@ def _tab_analizar():
             st.markdown('<p style="color:#475569; font-size:0.85rem;">No se encontraron palabras sospechosas.</p>', unsafe_allow_html=True)
 
         # ---- Gráficos ----
-       st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+        st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
- 
+
         col_g1, col_g2 = st.columns(2)
- 
+
         with col_g1:
             fig_gauge = go.Figure(go.Indicator(
                 mode="gauge+number",
@@ -644,7 +657,7 @@ def _tab_analizar():
                 margin=dict(t=40, b=10, l=20, r=20)
             )
             st.plotly_chart(fig_gauge, use_container_width=True)
- 
+
         with col_g2:
             fig_pie = go.Figure(go.Pie(
                 labels=["Phishing", "Legítimo"],
@@ -666,6 +679,7 @@ def _tab_analizar():
                 margin=dict(t=20, b=10, l=10, r=10)
             )
             st.plotly_chart(fig_pie, use_container_width=True)
+
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
@@ -686,9 +700,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#92400e;">
             <p style="color:#fcd34d; font-size:0.9rem; line-height:1.8;">
-             - Este correo presenta indicadores sospechosos. Procede con cautela.<br>
-             - Verifica la dirección del remitente y el dominio.<br>
-             - No hagas clic en enlaces sin verificar su destino.
+            ⚠ Este correo presenta indicadores sospechosos. Procede con cautela.<br>
+             Verifica la dirección del remitente y el dominio.<br>
+             No hagas clic en enlaces sin verificar su destino.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -696,9 +710,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#14532d;">
             <p style="color:#86efac; font-size:0.9rem; line-height:1.8;">
-             - Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
-             - Verifica siempre el remitente antes de responder.<br>
-             - No hagas clic en enlaces inesperados aunque el correo parezca confiable.
+             Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
+             Verifica siempre el remitente antes de responder.<br>
+             No hagas clic en enlaces inesperados aunque el correo parezca confiable.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -711,18 +725,18 @@ def _tab_indicadores():
     st.markdown('<div class="pg-card-title">¿Qué analiza PhishGuard?</div>', unsafe_allow_html=True)
 
     indicadores = [
-        ("Modelo de ML",        f"Clasificador entrenado con miles de correos reales usando TF-IDF + Naive Bayes / Random Forest."),
-        ("Palabras Clave",       f"Se verifican {len(SUSPICIOUS_WORDS)} palabras frecuentes en correos de phishing."),
-        ("Detección de URLs",    "Más de 3 URLs en un correo incrementa la puntuación de riesgo automáticamente."),
-        ("Exceso de Mayúsculas", "Un ratio mayor al 35% de mayúsculas es señal de alerta heurística."),
-        ("Score Combinado",      "El resultado combina la probabilidad del modelo con penalizaciones heurísticas."),
+        ("", "Modelo de ML",        f"Clasificador entrenado con miles de correos reales usando TF-IDF + Naive Bayes / Random Forest."),
+        ("", "Palabras Clave",       f"Se verifican {len(SUSPICIOUS_WORDS)} palabras frecuentes en correos de phishing."),
+        ("", "Detección de URLs",    "Más de 3 URLs en un correo incrementa la puntuación de riesgo automáticamente."),
+        ("", "Exceso de Mayúsculas", "Un ratio mayor al 35% de mayúsculas es señal de alerta heurística."),
+        ("", "Score Combinado",      "El resultado combina la probabilidad del modelo con penalizaciones heurísticas."),
     ]
 
-    for titulo, desc in indicadores:
+    for icon, titulo, desc in indicadores:
         st.markdown(f"""
         <div class="pg-card" style="padding:1.2rem 1.5rem; margin-bottom:10px;">
             <div style="display:flex; gap:1rem; align-items:flex-start;">
-                <div style="font-size:1.4rem; flex-shrink:0;"
+                <div style="font-size:1.4rem; flex-shrink:0;">{icon}</div>
                 <div>
                     <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:#00d4ff; margin-bottom:4px; letter-spacing:0.08em;">{titulo.upper()}</div>
                     <div style="font-size:0.85rem; color:#94a3b8; line-height:1.7;">{desc}</div>
@@ -791,12 +805,144 @@ def _tab_historial():
     st.markdown("<br>", unsafe_allow_html=True)
     col_clear = st.columns([2, 1, 2])
     with col_clear[1]:
-        if st.button("  Limpiar Historial", use_container_width=True):
+        if st.button("Limpiar Historial", use_container_width=True):
             st.session_state.historial         = []
             st.session_state.total_analizados  = 0
             st.session_state.total_phishing    = 0
             st.session_state.total_legitimos   = 0
             st.rerun()
+
+
+def _tab_sobre():
+    # ---- Dataset ----
+    st.markdown('<div class="pg-card-title">Dataset Utilizado</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <a href="https://www.kaggle.com/datasets/naserabdullahalam/phishing-email-dataset" target="_blank" class="pg-link-card" style="text-decoration:none;">
+        <div class="pg-link-icon"></div>
+        <div style="flex:1; min-width:0;">
+            <div class="pg-link-title">Phishing Email Dataset</div>
+            <div class="pg-link-desc">Colección de correos etiquetados como phishing y legítimos usada para entrenar y evaluar el modelo. Contiene miles de muestras reales con texto procesado y metadatos.</div>
+            <div class="pg-link-url">kaggle.com · naserabdullahalam/phishing-email-dataset</div>
+        </div>
+        <div style="margin-left:auto; font-size:1rem; color:#1e3a4a; flex-shrink:0;"></div>
+    </a>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="pg-stat-row">
+        <div class="pg-stat-box"><div class="pg-stat-val">18 K+</div><div class="pg-stat-lbl">Correos totales</div></div>
+        <div class="pg-stat-box"><div class="pg-stat-val">2</div><div class="pg-stat-lbl">Clases (phishing / legítimo)</div></div>
+        <div class="pg-stat-box"><div class="pg-stat-val">Kaggle</div><div class="pg-stat-lbl">Fuente</div></div>
+        <div class="pg-stat-box"><div class="pg-stat-val">CSV</div><div class="pg-stat-lbl">Formato</div></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+
+    # ---- Repositorio ----
+    st.markdown('<div class="pg-card-title">Repositorio del Proyecto</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <a href="https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector" target="_blank" class="pg-link-card" style="text-decoration:none;">
+        <div class="pg-link-icon"></div>
+        <div style="flex:1; min-width:0;">
+            <div class="pg-link-title">naive-bayes-phishing-detector</div>
+            <div class="pg-link-desc">Código fuente completo del proyecto: entrenamiento del modelo, pipeline de preprocesamiento, vectorización TF-IDF y esta aplicación Streamlit.</div>
+            <div class="pg-link-url">github.com · jsflorezp83-a11y/naive-bayes-phishing-detector</div>
+        </div>
+        <div style="margin-left:auto; font-size:1rem; color:#1e3a4a; flex-shrink:0;"></div>
+    </a>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+
+    # ---- Algoritmo Naive Bayes ----
+    st.markdown('<div class="pg-card-title">Algoritmo: Naive Bayes</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="pg-card" style="margin-bottom:1.2rem;">
+        <p style="color:#94a3b8; font-size:0.88rem; line-height:1.8;">
+            <strong style="color:#e2e8f0;">Naive Bayes</strong> es un clasificador probabilístico basado en el
+            <strong style="color:#00d4ff;">Teorema de Bayes</strong>, que calcula la probabilidad de que un correo
+            sea phishing dado su contenido. Se llama "naive" (ingenuo) porque asume que cada palabra
+            del correo es <em>independiente</em> entre sí, lo que simplifica enormemente el cálculo
+            sin sacrificar precisión en clasificación de texto.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Fórmula
+    st.markdown('<div class="pg-card-title" style="margin-bottom:0.5rem;">Fórmula de Bayes</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="pg-formula">
+P(Phishing | correo) = P(correo | Phishing) × P(Phishing) / P(correo)
+<br>
+Donde:
+  P(correo | Phishing)  = ∏ P(palabraᵢ | Phishing)   ← Verosimilitud
+  P(Phishing)           = proporción de phishing en el dataset  ← Prior
+  P(correo)             = constante normalizadora
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Pasos del pipeline
+    st.markdown('<div class="pg-card-title">Pipeline del Modelo</div>', unsafe_allow_html=True)
+
+    pasos = [
+        ("01", "Recolección de Datos",
+         "Se carga el dataset de Kaggle con correos etiquetados. Cada muestra tiene el cuerpo del correo y su etiqueta: 1 = phishing, 0 = legítimo."),
+        ("02", "Preprocesamiento",
+         "Se convierte el texto a minúsculas, se eliminan URLs, direcciones de email, caracteres especiales y espacios redundantes para limpiar el ruido."),
+        ("03", "Vectorización TF-IDF",
+         "Se aplica TF-IDF (Term Frequency–Inverse Document Frequency) para convertir el texto en vectores numéricos. Palabras frecuentes en phishing pero raras en legítimos obtienen mayor peso."),
+        ("04", "Entrenamiento Naive Bayes",
+         "El modelo MultinomialNB aprende la probabilidad de cada palabra dado cada clase (phishing vs legítimo) a partir del corpus de entrenamiento."),
+        ("05", "Ajuste Heurístico",
+         "Sobre la probabilidad del modelo se aplican penalizaciones adicionales por número de palabras sospechosas, URLs excesivas y ratio alto de mayúsculas."),
+        ("06", "Predicción Final",
+         "Se combina la probabilidad del modelo con el ajuste heurístico para generar un score de riesgo entre 0% y 99% con una etiqueta de nivel (Muy Bajo → Crítico)."),
+    ]
+
+    for num, titulo, desc in pasos:
+        st.markdown(f"""
+        <div class="pg-nb-step">
+            <div class="pg-nb-num">{num}</div>
+            <div>
+                <div class="pg-nb-title">{titulo.upper()}</div>
+                <div class="pg-nb-desc">{desc}</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Ventajas y limitaciones
+    col_v, col_l = st.columns(2)
+    with col_v:
+        st.markdown("""
+        <div class="pg-card" style="border-color:#14532d;">
+            <div class="pg-card-title" style="color:#22c55e;"> Ventajas</div>
+            <p style="color:#86efac; font-size:0.82rem; line-height:1.9;">
+            · Muy rápido en predicción<br>
+            · Funciona bien con texto<br>
+            · Pocos datos para entrenar<br>
+            · Interpretable y transparente<br>
+            · Robusto ante irrelevantes
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_l:
+        st.markdown("""
+        <div class="pg-card" style="border-color:#7f1d1d;">
+            <div class="pg-card-title" style="color:#ef4444;">⚠ Limitaciones</div>
+            <p style="color:#fca5a5; font-size:0.82rem; line-height:1.9;">
+            · Asume independencia de palabras<br>
+            · No captura contexto semántico<br>
+            · Sensible a palabras nuevas<br>
+            · Puede sesgarse por idioma<br>
+            · No detecta imágenes/adjuntos
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 # ==========================================
