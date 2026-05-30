@@ -162,7 +162,10 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     box-shadow: 0 8px 30px rgba(0,120,255,0.5) !important;
     color: #000000 !important;
 }
-
+.stButton > button:focus, .stButton > button:focus-visible {
+    outline: none !important;
+    box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
+}
 .stTextArea textarea {
     background: #060d14 !important;
     color: #cbd5e1 !important;
