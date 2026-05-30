@@ -172,13 +172,6 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
     color: #000000 !important;
 }
-            
-div[data-testid="stBaseButton-secondary"] {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
 .stTextArea textarea {
     background: #060d14 !important;
     color: #cbd5e1 !important;
