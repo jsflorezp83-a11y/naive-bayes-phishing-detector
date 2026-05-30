@@ -666,9 +666,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#92400e;">
             <p style="color:#fcd34d; font-size:0.9rem; line-height:1.8;">
-             Este correo presenta indicadores sospechosos. Procede con cautela.<br>
-             Verifica la dirección del remitente y el dominio.<br>
-             No hagas clic en enlaces sin verificar su destino.
+             - Este correo presenta indicadores sospechosos. Procede con cautela.<br>
+             - Verifica la dirección del remitente y el dominio.<br>
+             - No hagas clic en enlaces sin verificar su destino.
             </p>
             </div>
             """, unsafe_allow_html=True)
@@ -676,9 +676,9 @@ def _tab_analizar():
             st.markdown("""
             <div class="pg-card" style="border-color:#14532d;">
             <p style="color:#86efac; font-size:0.9rem; line-height:1.8;">
-             Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
-             Verifica siempre el remitente antes de responder.<br>
-             No hagas clic en enlaces inesperados aunque el correo parezca confiable.
+             - Este correo parece legítimo. Sin embargo, mantén buenas prácticas:<br>
+             - Verifica siempre el remitente antes de responder.<br>
+             - No hagas clic en enlaces inesperados aunque el correo parezca confiable.
             </p>
             </div>
             """, unsafe_allow_html=True)
