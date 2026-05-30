@@ -625,28 +625,61 @@ def _tab_analizar():
             )
             st.plotly_chart(fig_gauge, use_container_width=True)
 
-        with col_g2:
-        fig_pie = px.pie(
-    values=[prob_phishing * 100, prob_legit * 100],
-    names=["Phishing", "Legítimo"],
-    hole=0.55,
-    color_discrete_sequence=["#ef4444", "#22c55e"]
+      with col_g2:
 
+    if is_phishing:
+        valores = [prob_phishing * 100, prob_legit * 100]
+        nombres = ["Phishing", "Legítimo"]
+        colores = ["#ef4444", "#22c55e"]
+    else:
+        valores = [prob_legit * 100, prob_phishing * 100]
+        nombres = ["Legítimo", "Phishing"]
+        colores = ["#22c55e", "#ef4444"]
 
+    fig_pie = px.pie(
+        values=valores,
+        names=nombres,
+        hole=0.55,
+        color_discrete_sequence=colores
+    )
+
+    fig_pie.update_traces(
+        textfont=dict(
+            family="Space Mono",
+            color="#e2e8f0"
+        ),
+        marker=dict(
+            line=dict(
+                color="#050a0e",
+                width=2
             )
-            fig_pie.update_traces(
-                textfont=dict(family="Space Mono", color="#e2e8f0"),
-                marker=dict(line=dict(color="#050a0e", width=2))
-            )
-            fig_pie.update_layout(
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)",
-                font=dict(color="#94a3b8", family="Inter"),
-                legend=dict(font=dict(color="#94a3b8", size=11), bgcolor="rgba(0,0,0,0)"),
-                height=220,
-                margin=dict(t=20, b=10, l=10, r=10)
-            )
-            st.plotly_chart(fig_pie, use_container_width=True)
+        )
+    )
+
+    fig_pie.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(
+            color="#94a3b8",
+            family="Inter"
+        ),
+        legend=dict(
+            font=dict(
+                color="#94a3b8",
+                size=11
+            ),
+            bgcolor="rgba(0,0,0,0)"
+        ),
+        height=220,
+        margin=dict(
+            t=20,
+            b=10,
+            l=10,
+            r=10
+        )
+    )
+
+    st.plotly_chart(fig_pie, use_container_width=True)
 
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
