@@ -1,4 +1,4 @@
-# Naive Bayes Phishing Detector
+# Naive bayes phishing detector
 
 ## Descripción
 
@@ -22,9 +22,9 @@ https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector.git
 
 ---
 
-## Algoritmo Utilizado
+## Algoritmo utilizado
 
-### Naive Bayes
+### Naive bayes
 
 Naive Bayes es un algoritmo probabilístico de Machine Learning utilizado comúnmente en tareas de clasificación como:
 
@@ -42,7 +42,7 @@ El algoritmo fue seleccionado porque:
 - Maneja grandes cantidades de datos.
 - Es ampliamente usado en aplicaciones de ciberseguridad.
 
-### Métricas del Modelo
+### Métricas del modelo
 
 - Accuracy: 92%
 - Precision: 90%
@@ -53,13 +53,13 @@ El algoritmo fue seleccionado porque:
 
 ## Dataset Utilizado
 
-### Fuente de los Datos
+### Fuente de los datos
 
-Phishing Email Dataset - Kaggle
+Phishing email dataset - Kaggle
 
 https://www.kaggle.com/datasets/naserabdullahalam/phishing-email-dataset
 
-### Tamaño del Dataset
+### Tamaño del dataset
 
 El dataset contiene aproximadamente 82.500 registros correspondientes a correos electrónicos utilizados para entrenar y evaluar el modelo de clasificación.
 
@@ -68,11 +68,11 @@ El dataset contiene aproximadamente 82.500 registros correspondientes a correos 
 El conjunto de datos contiene correos electrónicos clasificados en dos categorías:
 
 - Phishing.
-- Safe Email (Correo legítimo).
+- Safe email (Correo legítimo).
 
 Este dataset fue utilizado para entrenar y evaluar el modelo de clasificación.
 
-### Características Utilizadas
+### Características utilizadas
 
 - Contenido textual del correo.
 - Palabras sospechosas.
@@ -86,7 +86,7 @@ Entrenar un modelo capaz de identificar automáticamente correos electrónicos m
 
 ---
 
-## Tecnologías Utilizadas
+## Tecnologías utilizadas
 
 - Python
 - Streamlit
@@ -99,7 +99,7 @@ Entrenar un modelo capaz de identificar automáticamente correos electrónicos m
 
 ---
 
-## Instalación Local
+## Instalación local
 
 ### Requisitos
 
@@ -110,7 +110,7 @@ Antes de ejecutar el proyecto, asegúrese de tener instalado:
 - Git.
 - Conexión a Internet para descargar las dependencias.
 
-### Verificar Python
+### Verificar python
 
 ```bash
 python --version
@@ -118,7 +118,7 @@ python --version
 
 Debería mostrar una versión igual o superior a Python 3.11.
 
-### Verificar Git
+### Verificar git
 
 ```bash
 git --version
@@ -126,9 +126,9 @@ git --version
 
 ---
 
-## Pasos a Seguir
+## Pasos a seguir
 
-### 1. Clonar el Repositorio
+### 1. Clonar el repositorio
 
 Abra una terminal o consola de comandos y ejecute:
 
@@ -138,7 +138,7 @@ git clone https://github.com/jsflorezp83-a11y/naive-bayes-phishing-detector.git
 
 Este comando descargará una copia completa del proyecto desde GitHub a su equipo local.
 
-### 2. Acceder al Directorio del Proyecto
+### 2. Acceder al directorio del proyecto
 
 Una vez finalizada la descarga, ingrese a la carpeta del proyecto:
 
@@ -146,7 +146,7 @@ Una vez finalizada la descarga, ingrese a la carpeta del proyecto:
 cd naive-bayes-phishing-detector
 ```
 
-### 3. Instalar las Dependencias
+### 3. Instalar las dependencias
 
 Instale todas las librerías necesarias para ejecutar la aplicación:
 
@@ -163,7 +163,7 @@ Este comando instalará automáticamente todas las dependencias definidas en el 
 - Joblib
 - Matplotlib
 
-### 4. Ejecutar la Aplicación
+### 4. Ejecutar la aplicación
 
 Una vez completada la instalación, inicie la aplicación mediante:
 
@@ -171,7 +171,7 @@ Una vez completada la instalación, inicie la aplicación mediante:
 streamlit run app/app.py
 ```
 
-### 5. Acceder a la Aplicación
+### 5. Acceder a la aplicación
 
 Después de ejecutar el comando anterior, Streamlit abrirá automáticamente la aplicación en el navegador.
 
