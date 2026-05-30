@@ -610,7 +610,7 @@ def _tab_analizar():
             st.markdown('<p style="color:#475569; font-size:0.85rem;">No se encontraron palabras sospechosas.</p>', unsafe_allow_html=True)
 
         # ---- Gráficos ----
-        st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
+       st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
  
         col_g1, col_g2 = st.columns(2)
@@ -646,16 +646,17 @@ def _tab_analizar():
             st.plotly_chart(fig_gauge, use_container_width=True)
  
         with col_g2:
-            fig_pie = px.pie(
+            fig_pie = go.Figure(go.Pie(
+                labels=["Phishing", "Legítimo"],
                 values=[prob_phishing * 100, prob_legit * 100],
-                names=["Phishing", "Legítimo"],
                 hole=0.55,
-                color_discrete_map={"Phishing": "#ef4444", "Legítimo": "#22c55e"}
-            )
-            fig_pie.update_traces(
+                marker=dict(
+                    colors=["#ef4444", "#22c55e"],
+                    line=dict(color="#050a0e", width=2)
+                ),
                 textfont=dict(family="Space Mono", color="#e2e8f0"),
-                marker=dict(line=dict(color="#050a0e", width=2))
-            )
+                sort=False
+            ))
             fig_pie.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
