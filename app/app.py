@@ -134,12 +134,17 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     flex-shrink: 0;
 }
 
+.stButton {
+    padding: 0 !important;
+    margin: 0 !important;
+}
 .stButton > button, .stButton > button > div, .stButton > button p {
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
     color: #000000 !important;
     border: none !important;
     border-radius: 10px !important;
     height: 52px !important;
+    width: 100% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -149,6 +154,8 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     letter-spacing: 0.05em !important;
     transition: all 0.3s ease !important;
     box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
+    outline: none !important;
+    padding: 0 !important;
 }
 .stButton > button:hover, .stButton > button:hover > div, .stButton > button:hover p {
     transform: translateY(-2px) !important;
