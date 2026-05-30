@@ -593,7 +593,7 @@ def _tab_analizar():
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Distribución de Probabilidades</div>', unsafe_allow_html=True)
 
-              col_g1, col_g2 = st.columns(2)
+        col_g1, col_g2 = st.columns(2)
 
         with col_g1:
             fig_gauge = go.Figure(go.Indicator(
@@ -606,24 +606,16 @@ def _tab_analizar():
                     "bgcolor": "#0a1018",
                     "borderwidth": 0,
                     "steps": [
-                        {"range": [0, 25], "color": "#061a0e"},
-                        {"range": [25, 50], "color": "#0e1a08"},
-                        {"range": [50, 70], "color": "#1a1400"},
-                        {"range": [70, 85], "color": "#1a0a00"},
+                        {"range": [0,  25],  "color": "#061a0e"},
+                        {"range": [25, 50],  "color": "#0e1a08"},
+                        {"range": [50, 70],  "color": "#1a1400"},
+                        {"range": [70, 85],  "color": "#1a0a00"},
                         {"range": [85, 100], "color": "#1a0000"},
                     ],
-                    "threshold": {
-                        "line": {"color": risk_color, "width": 4},
-                        "thickness": 0.75,
-                        "value": riesgo_pct
-                    }
+                    "threshold": {"line": {"color": risk_color, "width": 4}, "thickness": 0.75, "value": riesgo_pct}
                 },
-                title={
-                    "text": "Nivel de Riesgo",
-                    "font": {"color": "#64748b", "size": 12, "family": "Space Mono"}
-                }
+                title={"text": "Nivel de Riesgo", "font": {"color": "#64748b", "size": 12, "family": "Space Mono"}}
             ))
-
             fig_gauge.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
@@ -631,68 +623,29 @@ def _tab_analizar():
                 height=220,
                 margin=dict(t=40, b=10, l=20, r=20)
             )
-
             st.plotly_chart(fig_gauge, use_container_width=True)
 
         with col_g2:
-
-            if is_phishing:
-                valores = [prob_phishing * 100, prob_legit * 100]
-                nombres = ["Phishing", "Legítimo"]
-                colores = ["#ef4444", "#22c55e"]
-            else:
-                valores = [prob_legit * 100, prob_phishing * 100]
-                nombres = ["Legítimo", "Phishing"]
-                colores = ["#22c55e", "#ef4444"]
-
             fig_pie = px.pie(
-                values=valores,
-                names=nombres,
+                values=[prob_phishing * 100, prob_legit * 100],
+                names=["Phishing", "Legítimo"],
                 hole=0.55,
-                color_discrete_sequence=colores
+                color_discrete_sequence=["#ef4444", "#22c55e"]
             )
-
             fig_pie.update_traces(
-                textfont=dict(
-                    family="Space Mono",
-                    color="#e2e8f0"
-                ),
-                marker=dict(
-                    line=dict(
-                        color="#050a0e",
-                        width=2
-                    )
-                )
+                textfont=dict(family="Space Mono", color="#e2e8f0"),
+                marker=dict(line=dict(color="#050a0e", width=2))
             )
-
             fig_pie.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                font=dict(
-                    color="#94a3b8",
-                    family="Inter"
-                ),
-                legend=dict(
-                    font=dict(
-                        color="#94a3b8",
-                        size=11
-                    ),
-                    bgcolor="rgba(0,0,0,0)"
-                ),
+                font=dict(color="#94a3b8", family="Inter"),
+                legend=dict(font=dict(color="#94a3b8", size=11), bgcolor="rgba(0,0,0,0)"),
                 height=220,
-                margin=dict(
-                    t=20,
-                    b=10,
-                    l=10,
-                    r=10
-                )
+                margin=dict(t=20, b=10, l=10, r=10)
             )
-
             st.plotly_chart(fig_pie, use_container_width=True)
 
-        # ---- Recomendaciones ----
-        st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
-        st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
         # ---- Recomendaciones ----
         st.markdown("<hr class='pg-divider'>", unsafe_allow_html=True)
         st.markdown('<div class="pg-card-title">Recomendaciones</div>', unsafe_allow_html=True)
