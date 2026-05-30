@@ -140,6 +140,9 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     border: none !important;
     border-radius: 10px !important;
     height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 0.9rem !important;
     font-weight: 600 !important;
