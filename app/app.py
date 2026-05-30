@@ -134,7 +134,7 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     flex-shrink: 0;
 }
 
-.stButton > button {
+.stButton > button, .stButton > button > div, .stButton > button p {
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
     color: #000000 !important;
     border: none !important;
@@ -147,9 +147,10 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     transition: all 0.3s ease !important;
     box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
 }
-.stButton > button:hover {
+.stButton > button:hover, .stButton > button:hover > div, .stButton > button:hover p {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 30px rgba(0,120,255,0.5) !important;
+    color: #000000 !important;
 }
 
 .stTextArea textarea {
