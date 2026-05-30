@@ -153,18 +153,23 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
     transition: all 0.3s ease !important;
-    box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
+    box-shadow: none !important;
     outline: none !important;
     padding: 0 !important;
+    border-color: transparent !important;
 }
 .stButton > button:hover, .stButton > button:hover > div, .stButton > button:hover p {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 30px rgba(0,120,255,0.5) !important;
     color: #000000 !important;
-}
-.stButton > button:focus, .stButton > button:focus-visible {
     outline: none !important;
-    box-shadow: 0 4px 20px rgba(0,120,255,0.3) !important;
+    border: none !important;
+}
+.stButton > button:focus, .stButton > button:focus-visible, .stButton > button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-color: transparent !important;
 }
 .stTextArea textarea {
     background: #060d14 !important;
