@@ -136,7 +136,7 @@ h1, h2, h3 { font-family: 'Space Mono', monospace !important; color: #ffffff !im
 
 .stButton > button {
     background: linear-gradient(135deg, #0078ff 0%, #00b4d8 100%) !important;
-    color: #ffffff !important;
+    color: #000000 !important;
     border: none !important;
     border-radius: 10px !important;
     height: 52px !important;
