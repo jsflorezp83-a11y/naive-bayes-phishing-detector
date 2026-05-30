@@ -626,11 +626,21 @@ def _tab_analizar():
             st.plotly_chart(fig_gauge, use_container_width=True)
 
         with col_g2:
-            fig_pie = px.pie(
-                values=[prob_phishing * 100, prob_legit * 100],
-                names=["Phishing", "Legítimo"],
-                hole=0.55,
-                color_discrete_sequence=["#ef4444", "#22c55e"]
+           if is_phishing:
+    valores = [prob_phishing * 100, prob_legit * 100]
+    nombres = ["Phishing", "Legítimo"]
+    colores = ["#ef4444", "#22c55e"]  # rojo phishing, verde legítimo
+else:
+    valores = [prob_legit * 100, prob_phishing * 100]
+    nombres = ["Legítimo", "Phishing"]
+    colores = ["#22c55e", "#ef4444"]  # verde legítimo, rojo phishing
+
+fig_pie = px.pie(
+    values=valores,
+    names=nombres,
+    hole=0.55,
+    color_discrete_sequence=colores
+)
             )
             fig_pie.update_traces(
                 textfont=dict(family="Space Mono", color="#e2e8f0"),
