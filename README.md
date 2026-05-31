@@ -1,4 +1,4 @@
-# Naive bayes phishing detector
+# PhishGuard
 
 ## Descripción
 
